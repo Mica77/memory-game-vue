@@ -12,7 +12,7 @@ export default {
   name: 'CardItem',
   props: {
     card: {
-      type: String,
+      type: Object,
       required: true,
     },
     cardFaceDownUrl: {

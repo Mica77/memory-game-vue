@@ -25,7 +25,7 @@ export default {
   },
   methods: {
     openCard(card) {
-      this.$store.commit('openCard', card)
+      this.$store.dispatch('openCard', card)
     }
   }
 };
@@ -35,16 +35,28 @@ export default {
 <style scoped>
 
 .cards {
-  display: flex;
-  flex-wrap: wrap;
-  width: 640px;  
+  display: grid;
+  grid-template-columns: repeat(6, 14.5vmin);
+  grid-template-rows: repeat(6, 14.5vmin);
+  justify-content: center;
 }
 
 .cards > * {
-    width: calc((100% - 0.5 * 12%)/ 6);
-    max-width: 100px;
-    height: 100px;
-    max-height: 100px;
-    padding: 0.5%;
+  max-width: 225px;
+  max-height: 225px;
+  width: 14vmin;
+  height: 14vmin;
+}
+
+@media screen and (max-width: 600px) {
+  .cards {
+    grid-template-columns: repeat(6, 16.5vmin);
+    grid-template-rows: repeat(6, 16.5vmin);
+  }
+
+  .cards > * {
+    width: 16vmin;
+    height: 16vmin;
+  }
 }
 </style>
