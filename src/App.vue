@@ -1,26 +1,37 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <div class="content">
+      <div class="header">
+        <h1>Memo game</h1>
+      </div>
+      <cards-area :cards="$store.getters.randomCards" />
+    </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import CardsArea from './components/CardsArea.vue';
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
-  }
+    CardsArea,
+  },
+  methods: {
+    fetchCards () {
+      this.$store.dispatch('fetchCards');
+    }
+  },
+  mounted() {
+    this.fetchCards();
+  },
 }
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+.content {
+  font-family: Helvetica, Arial, sans-serif;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 600px;
 }
 </style>
+
