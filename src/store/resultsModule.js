@@ -6,11 +6,7 @@ export const resultsModule = {
     }),
     getters: {
         results(state) {
-            return state.resultsArray
-        },
-        bestTimerValue(state) {
-            const valuesArray = state.resultsArray.map((item) => item.timerValue)
-            return Math.min(...valuesArray)
+            return [...state.resultsArray].reverse()
         }
     },
     mutations: {

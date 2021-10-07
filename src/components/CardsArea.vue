@@ -4,7 +4,8 @@
         v-for="card in cards"
         :card="card"
         :key="card.id"
-        @open="openCard(card)"
+        :cardFaceDownUrl="cardFaceDownUrl"
+        @openCard="$emit('openCard', card)"
       />
     </div>
 </template>
@@ -21,11 +22,10 @@ export default {
     cards: {
       type: Array,
       required: true
-    }
-  },
-  methods: {
-    openCard(card) {
-      this.$store.dispatch('openCard', card)
+    },
+    cardFaceDownUrl: {
+      type: String,
+      required : true
     }
   }
 };

@@ -1,9 +1,14 @@
 <template>        
     <div class="card">
       <transition name="overturn">
-        <img v-if="card.isOpen" :src="card.imageUrl" />
-        <img v-else="!card.isOpen" :src="cardFaceDownUrl" @click="$emit('open')">
-       </transition>
+        <img 
+          v-if="card.isOpen" 
+          :src="card.imageUrl" />
+        <img 
+          v-else 
+          :src="cardFaceDownUrl" 
+          @click="$emit('openCard', card)">
+      </transition>
     </div>
 </template>
 
@@ -17,7 +22,7 @@ export default {
     },
     cardFaceDownUrl: {
         type: String,
-        default: './img/cardFaceDown.JFIF'
+        required: true
     }
   }
 };

@@ -2,10 +2,23 @@
     <div class="content">
       <div class="header">
         <h1>Memo game</h1>
-        <game-timer></game-timer>
+        <game-timer  
+          v-show="$store.state.cards.loadingComplete"
+          @startGame="$store.dispatch('startGame')"
+          :allowStartGame="!!$store.getters.allowStartGame"
+          :timerText="$store.getters.timerText"
+        />
       </div>
-      <cards-area :cards="$store.getters.cards" />
-      <game-results :results="$store.getters.results"></game-results>
+
+      <cards-area 
+        :cards="$store.state.cards.cards" 
+        v-show="$store.state.cards.loadingComplete"
+        :cardFaceDownUrl="$store.state.cards.cardFaceDownUrl"
+        @openCard="openCard" />
+
+      <game-results 
+        :results="$store.getters.results"
+       />
     </div>
 </template>
 
@@ -23,12 +36,19 @@ export default {
   },
   methods: {
     fetchCards () {
-      this.$store.dispatch('fetchCards');
+      this.$store.dispatch('fetchCards')
+    },
+    openCard(card) {
+      this.$store.dispatch('openCard', card)
     }
   },
   mounted() {
-    this.fetchCards();
-  },
+    this.fetchCards()
+
+    //test
+    this.$store.dispatch('addResult', 200);
+    this.$store.dispatch('addResult', 270);
+  }
 }
 </script>
 

@@ -1,9 +1,7 @@
 <template>
   <div class="game-result">
     {{ result.timerText }} 
-    <span v-show="$store.getters.results.length > 1 && result.timerValue == $store.getters.bestTimerValue" class="best">
-      The best!!!
-    </span>
+    <span v-show="isTheBest" class="best"> The best!!!</span>
   </div>
 </template>
 
@@ -13,6 +11,9 @@ export default {
         result: {
             type: Object,
             required: true
+        },
+        isTheBest: {
+          type: Boolean
         }
     }  
 };
@@ -20,6 +21,11 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+
+  .game-result {
+      line-height: 27px;
+  }
+
   .best {
     color: slateblue;
     font-size: 20px;

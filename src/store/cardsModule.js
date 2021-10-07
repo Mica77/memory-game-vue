@@ -7,19 +7,17 @@ export const cardsModule = {
     loadingComplete: false,
     selectedCard: null,
     isLockForOpenCard: false,
-    cards: []
+    cards: [],
+    cardFaceDownUrl: './img/cardFaceDown.JFIF'
   }),
   getters: {
     gameIsOver(state) {
       return !state.cards.some((card) => !card.isDone)
-    },
-    cards(state) {
-      return state.cards
     }
   },
   mutations: {
-    setLoading(state, bool) {
-      state.loadingComplete = bool;
+    setLoadingComplete(state, value) {
+      state.loadingComplete = value;
     },
     setIinitialCards(state, value) {
       state.initialCards = value;
@@ -43,7 +41,7 @@ export const cardsModule = {
         commit('setIinitialCards', response.data)
         dispatch('shuffleCards')
       } finally {
-        commit('setLoading', true);
+        commit('setLoadingComplete', true);
       }
     },
     openCard({ state, commit, dispatch, rootState }, value) {
@@ -73,7 +71,7 @@ export const cardsModule = {
         commit('setIsLockForOpenCard', true)
 
         //если это вторая часть хода
-        const DELAY = 1000 //задержка, прежде чем отреагировать в мс
+        const DELAY = 1000 //задержка, прежде чем отреагировать
 
         setTimeout(() => {
 
@@ -91,8 +89,6 @@ export const cardsModule = {
           }
 
           commit('setSelectedCard', null)
-
-
         }, DELAY)
 
       }

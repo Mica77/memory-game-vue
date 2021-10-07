@@ -1,12 +1,27 @@
 <template>
   <div class="game-timer">
-    <button v-if="$store.getters.allowStartGame" @click="$store.dispatch('startGame')">Start</button> 
-    <div class="timer"> {{ $store.getters.timerText}}</div>
+    <button 
+      v-if="allowStartGame" 
+      @click="$emit('startGame')"
+    >
+      Start
+    </button> 
+
+    <div class="timer">{{ timerText }}</div>
   </div>
 </template>
 
 <script>
-export default {  
+export default { 
+  props: {
+    allowStartGame: {
+      type: Boolean,
+      required: true
+    },
+    timerText: {
+      type: String
+    }
+  }
   
 };
 </script>
