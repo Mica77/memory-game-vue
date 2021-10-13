@@ -104,7 +104,6 @@ export const cardsModule = {
       }));
 
       doubledCards = arrayUtils.shuffle(doubledCards)
-
       commit('setCards', doubledCards);
     }
   }

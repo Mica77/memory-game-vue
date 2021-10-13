@@ -1,0 +1,56 @@
+{
+  "card-item/card": {
+    "type": "object"
+  },
+  "CardItem/card": {
+    "type": "object"
+  },
+  "card-item/cardFaceDownUrl": {
+    "type": "string"
+  },
+  "CardItem/cardFaceDownUrl": {
+    "type": "string"
+  },
+  "cards-area/cards": {
+    "type": "array"
+  },
+  "CardsArea/cards": {
+    "type": "array"
+  },
+  "cards-area/cardFaceDownUrl": {
+    "type": "string"
+  },
+  "CardsArea/cardFaceDownUrl": {
+    "type": "string"
+  },
+  "game-result/result": {
+    "type": "object"
+  },
+  "GameResult/result": {
+    "type": "object"
+  },
+  "game-result/isTheBest": {
+    "type": "boolean"
+  },
+  "GameResult/isTheBest": {
+    "type": "boolean"
+  },
+  "game-results/results": {
+    "type": "array"
+  },
+  "GameResults/results": {
+    "type": "array"
+  },
+  "game-timer/allowStartGame": {
+    "type": "boolean"
+  },
+  "GameTimer/allowStartGame": {
+    "type": "boolean"
+  },
+  "game-timer/timerText": {
+    "type": "string"
+  },
+  "GameTimer/timerText": {
+    "type": "string"
+  }
+}
