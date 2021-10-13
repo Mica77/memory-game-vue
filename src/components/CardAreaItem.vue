@@ -2,20 +2,14 @@
   <div class="card">
     <transition name="overturn">
       <img v-if="card.isOpen" :src="card.imageUrl" />
-    </transition>
-    <transition name="overturn">
-      <img
-        v-if="!card.isOpen"
-        :src="cardFaceDownUrl"
-        @click="$emit('openCard', card)"
-      />
+      <img v-else :src="cardFaceDownUrl" @click="$emit('openCard', card)" />
     </transition>
   </div>
 </template>
 
 <script>
 export default {
-  name: "CardItem",
+  name: "CardAreaItem",
   props: {
     card: {
       type: Object,

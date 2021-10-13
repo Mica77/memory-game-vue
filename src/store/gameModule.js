@@ -10,7 +10,7 @@ export const gameModule = {
             return formatUtils.formatTimer(state.timerValue)
         },
         allowStartGame(state) {
-            return !state.gameIsStarted || state.gameIsOver
+            return !state.gameIsStarted || state.gameIsOver || false
         }
     },
     mutations: {

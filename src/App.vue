@@ -1,55 +1,67 @@
 <template>
-    <div class="content">
-      <div class="header">
-        <h1>Memo game</h1>
-        <game-timer  
-          v-show="$store.state.cards.loadingComplete"
-          @startGame="$store.dispatch('startGame')"
-          :allowStartGame="!!$store.getters.allowStartGame"
-          :timerText="$store.getters.timerText"
-        />
-      </div>
-
-      <cards-area 
-        :cards="$store.state.cards.cards" 
-        v-show="$store.state.cards.loadingComplete"
-        :cardFaceDownUrl="$store.state.cards.cardFaceDownUrl"
-        @openCard="openCard" />
-
-      <game-results 
-        :results="$store.getters.results"
-       />
+  <div class="content">
+    <div class="header">
+      <h1>Memo game</h1>
+      <game-timer
+        v-show="loadingComplete"
+        @startGame="startGame"
+        :allowStartGame="allowStartGame"
+        :timerText="timerText"
+      />
     </div>
+
+    <card-area
+      :cards="cards"
+      v-show="loadingComplete"
+      :cardFaceDownUrl="cardFaceDownUrl"
+      @openCard="openCard"
+    />
+
+    <game-result-list :results="results" />
+  </div>
 </template>
 
 <script>
-import CardsArea from './components/CardsArea.vue';
-import GameTimer from './components/GameTimer.vue';
-import GameResults from './components/GameResults.vue'
+import CardArea from "./components/CardArea.vue";
+import GameTimer from "./components/GameTimer.vue";
+import GameResultList from "./components/GameResultList.vue";
+import { mapState, mapGetters, mapActions, mapMutations } from "vuex";
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
-    CardsArea,
+    CardArea,
     GameTimer,
-    GameResults
+    GameResultList,
+  },
+  computed: {
+    ...mapState({
+      loadingComplete: (state) => state.cards.loadingComplete,
+      cards: (state) => state.cards.cards,
+      cardFaceDownUrl: (state) => state.cards.cardFaceDownUrl,
+    }),
+    ...mapGetters({
+      allowStartGame: "allowStartGame",
+      timerText: "timerText",
+      results: "results",
+    }),
   },
   methods: {
-    fetchCards () {
-      this.$store.dispatch('fetchCards')
-    },
-    openCard(card) {
-      this.$store.dispatch('openCard', card)
-    }
+    ...mapMutations({}),
+    ...mapActions({
+      fetchCards: "fetchCards",
+      openCard: "openCard",
+      startGame: "startGame",
+    }),
   },
   mounted() {
-    this.fetchCards()
+    this.fetchCards();
 
     //test
-    this.$store.dispatch('addResult', 200);
-    this.$store.dispatch('addResult', 270);
-  }
-}
+    //this.$store.dispatch("addResult", 200);
+    //this.$store.dispatch("addResult", 270);
+  },
+};
 </script>
 
 <style>

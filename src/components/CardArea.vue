@@ -1,39 +1,38 @@
 <template>
-    <div class="cards">
-      <card-item
-        v-for="card in cards"
-        :card="card"
-        :key="card.id"
-        :cardFaceDownUrl="cardFaceDownUrl"
-        @openCard="$emit('openCard', card)"
-      />
-    </div>
+  <div class="cards">
+    <card-area-item
+      v-for="card in cards"
+      :card="card"
+      :key="card.id"
+      :cardFaceDownUrl="cardFaceDownUrl"
+      @openCard="$emit('openCard', card)"
+    />
+  </div>
 </template>
 
 <script>
-import CardItem from '@/components/CardItem';
+import CardAreaItem from "@/components/CardAreaItem";
 
 export default {
   components: {
-    CardItem
+    CardAreaItem,
   },
-  name: 'CardsArea', 
+  name: "CardArea",
   props: {
     cards: {
       type: Array,
-      required: true
+      required: true,
     },
     cardFaceDownUrl: {
       type: String,
-      required : true
-    }
-  }
+      required: true,
+    },
+  },
 };
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-
 .cards {
   display: grid;
   grid-template-columns: repeat(6, 14.5vmin);

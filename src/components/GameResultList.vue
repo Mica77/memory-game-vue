@@ -2,7 +2,7 @@
   <div v-show="results.length">
     <h1>Results</h1>
     <div class="game-results">
-      <game-result
+      <game-result-item
         v-for="result in results"
         :key="result.id"
         :result="result"
@@ -13,29 +13,27 @@
 </template>
 
 <script>
-import GameResult from '@/components/GameResult'
+import GameResultItem from "@/components/GameResultItem";
 
-export default {  
+export default {
   components: {
-    GameResult
+    GameResultItem,
   },
   props: {
     results: {
       type: Array,
-      required: true
-    }
+      required: true,
+    },
   },
   computed: {
     bestTimerValue() {
-      const valuesArray = this.results.map((item) => item.timerValue)
-      return Math.min(...valuesArray)
-    }
-  } 
+      const valuesArray = this.results.map((item) => item.timerValue);
+      return Math.min(...valuesArray);
+    },
+  },
 };
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-
-  
 </style>
