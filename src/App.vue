@@ -3,21 +3,21 @@
     <div class="header">
       <h1>Memo game</h1>
       <game-timer
-        v-show="loadingComplete"
-        @startGame="startGame"
-        :allowStartGame="allowStartGame"
-        :timerText="timerText"
+        v-if="loadingComplete"
+        @start="startGame"
+        :allow-start-game="allowStartGame"
+        :timer-text="timerText"
       />
     </div>
 
     <card-area
       :cards="cards"
       v-show="loadingComplete"
-      :cardFaceDownUrl="cardFaceDownUrl"
-      @openCard="openCard"
+      :card-face-down-url="cardFaceDownUrl"
+      @open-card="openCard"
     />
 
-    <game-result-list :results="results" />
+    <game-result-list :results="reversedResults" />
   </div>
 </template>
 
@@ -43,23 +43,21 @@ export default {
     ...mapGetters({
       allowStartGame: "allowStartGame",
       timerText: "timerText",
-      results: "results",
+      reversedResults: "reversedResults",
     }),
+  },
+  mounted() {
+    this.fetchCards();
+    this.fetchResults();
   },
   methods: {
     ...mapMutations({}),
     ...mapActions({
       fetchCards: "fetchCards",
+      fetchResults: "fetchResults",
       openCard: "openCard",
       startGame: "startGame",
     }),
-  },
-  mounted() {
-    this.fetchCards();
-
-    //test
-    //this.$store.dispatch("addResult", 200);
-    //this.$store.dispatch("addResult", 270);
   },
 };
 </script>

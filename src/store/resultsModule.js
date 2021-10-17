@@ -5,13 +5,15 @@ export const resultsModule = {
         resultsArray: []
     }),
     getters: {
-        results(state) {
+        reversedResults(state) {
             return [...state.resultsArray].reverse()
         }
     },
     mutations: {
-        add(state, value) {
+        addResult(state, value) {
             state.resultsArray.push(value)
+            console.log(state.resultsArray)
+            localStorage.setItem('results', JSON.stringify(state.resultsArray))
         }
     },
     actions: {
@@ -23,7 +25,18 @@ export const resultsModule = {
                 timerText: formatUtils.formatTimer(value)
             }
 
-            commit('add', result)
+            commit('addResult', result)
+        },
+        fetchResults({ state, commit }) {
+            let results = localStorage.getItem('results');
+            if (results) {
+                try {
+                    let arr = JSON.parse(results)
+                    if (Array.isArray(arr))
+                        state.resultsArray = arr
+                }
+                catch { }
+            }
         }
     }
 }

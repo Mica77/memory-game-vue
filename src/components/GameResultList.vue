@@ -6,7 +6,7 @@
         v-for="result in results"
         :key="result.id"
         :result="result"
-        :isTheBest="results.length > 1 && result.timerValue == bestTimerValue"
+        :is-the-best="isTheBest(result)"
       />
     </div>
   </div>
@@ -29,6 +29,10 @@ export default {
     bestTimerValue() {
       const valuesArray = this.results.map((item) => item.timerValue);
       return Math.min(...valuesArray);
+    },
+    isTheBest() {
+      return (result) =>
+        this.results.length > 1 && result.timerValue == this.bestTimerValue;
     },
   },
 };

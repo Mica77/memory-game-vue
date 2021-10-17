@@ -1,6 +1,6 @@
 <template>
   <div class="game-timer">
-    <button v-if="allowStartGame" @click="$emit('startGame')">Start</button>
+    <button v-if="allowStartGame" @click="$emit('start')">Start</button>
 
     <div class="timer">{{ timerText }}</div>
   </div>

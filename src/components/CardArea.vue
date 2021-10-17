@@ -4,8 +4,8 @@
       v-for="card in cards"
       :card="card"
       :key="card.id"
-      :cardFaceDownUrl="cardFaceDownUrl"
-      @openCard="$emit('openCard', card)"
+      :card-face-down-url="cardFaceDownUrl"
+      @open="$emit('openCard', card)"
     />
   </div>
 </template>
@@ -14,20 +14,22 @@
 import CardAreaItem from "@/components/CardAreaItem";
 
 export default {
+  name: "card-area",
   components: {
     CardAreaItem,
   },
-  name: "CardArea",
   props: {
     cards: {
       type: Array,
       required: true,
     },
+
     cardFaceDownUrl: {
       type: String,
       required: true,
     },
   },
+  emits: ["openCard"],
 };
 </script>
 
