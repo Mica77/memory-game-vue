@@ -63,6 +63,13 @@ export default {
 </script>
 
 <style>
+@media screen and (min-width: 960px) {
+  html {
+    margin-left: calc(100vw - 100%);
+    margin-right: 0;
+  }
+}
+
 #app {
   font-family: Helvetica, Arial, sans-serif;
 }
